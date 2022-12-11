@@ -1,13 +1,54 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>wildfly-test</title>
-</h:head> 
-<body> 
-	<h:outputLabel value="Hello world!" />
-</body> 
+</h:head>
+
+<h:outputStylesheet library="webjars"
+	name="primeflex/3.2.0/primeflex.min.css" />
+
+<h:outputStylesheet library="css" name="styles.css" />
+
+
+<body>
+	<div class="card p-4 justify-content-center text-center">
+		<h:form>
+			<!-- Contenedor para mensajes de alerta -->
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			<div class="flex justify-content-center card-container ">
+				<!-- Texto de entrada -->
+				<div class="flex-1 text-center p-4 justify-content-center">
+					<h5>Texto de entrada</h5>
+					<p:inputTextarea cols="33" rows="10" id="input" required="true"
+						value="#{text.input}" placeholder="Ingresa el texto..." />
+
+				</div>
+				<!-- Texto de salida -->
+				<div class="flex-1 text-center p-4 justify-content-center">
+					<h5>Texto de salida</h5>
+					<p:inputTextarea cols="33" rows="10" id="output" required="false"
+						value="#{text.output}"
+						placeholder="Aquí se mostrará el texto de salida..." />
+				</div>
+
+			</div>
+			<!-- Botón de envío -->
+			<div class="flex-1 text-center p-4 justify-content-center">
+				<p:commandButton action="#{textForm.submit()}" value="Convertir"
+					update="output" icon="pi pi-check" />
+			</div>
+
+		</h:form>
+
+	</div>
+
+
+</body>
 </html>
